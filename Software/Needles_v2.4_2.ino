@@ -1,5 +1,5 @@
 // Eurorack 1U Midi Keyboard & Controller for Mutable Instruments Yarns
-// by Ithai Benjamin v2.4_2 January 2018
+// by Ithai Benjamin v2.4_2 January 2019
 
 #include <MIDI.h>
 #include <Wire.h>
