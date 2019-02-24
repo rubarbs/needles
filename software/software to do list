@@ -1,0 +1,23 @@
+Needles v2.4 Software to do list:
+
+
+Note Off while changing octaves
+Playing the Needles keyboard sends MIDI note-on/off messages. But what happens when you change an octave while still pressing a note - for example when you press C3 you send a note-on message. While still pressing C3, you change to an octave above and only then depress C3. Needles now thinks you released C4 so it sends a note-off message for C4, but C3 is still hanging with a note-on message. The way it’s handled now is by sending an ALL-NOTES-OFF message when an octave is changed. While it works it’s a hack.
+
+TO DO: Send a note off message only to the notes that are being pressed and held when going up and down octaves.
+
+
+Latch with SHIFT: 
+Latching of notes is currently done by changing the MIDI channel while notes are pressed. SHIFT button lights up, but is not memorized per channel. To unlatch press one of the octave buttons on the channel you want to unlatch.
+
+TO DO: Pressing SHIFT while holding any number of notes should latch those notes for the specific MIDI channel, and SHIFT led should turn on for that channel. To unlatch press SHIFT again. 
+
+
+General storing of button states for each MIDI Channel
+ 
+TO DO: smarter code to store all function states, Storing setting of each function and displaying it correctly for each specific  channel.
+Yarns can receive messages on four separate channels. If you’re in 1M mode on Yarns it’s monophonic and can just receive messages on one channel. So, if you want to turn on Legato (important for inputting slides), you press the Legato button on Needles, the Legato LED indicator lights up and Legato is turned on in Yarns. Press Legato again, indicator turns off, Yarns turns off Legato. That’s all good and will work on as many channels you want.
+But with this caveat:
+Put Yarns in 2M or 4M mode. Now you have 4 independent channels each receiving MIDI on 4 channels. So you’re on Channel 1, you press Legato, led turns on. Now you go to Channel 2 on Needles. The Legato led is still on, but Legato is actually off for that channel on Yarns. To activate legato you have to press the Legato button twice.
+ 
+So this has to be fixed. Needles needs to “memorize” settings per channel. Yarns will receive the correct messages of all functions and change them correctly, but the visual feedback you receive from Needles is not always correct.
